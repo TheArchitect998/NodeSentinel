@@ -22,21 +22,21 @@ services:
       # NODESENTINEL_ENABLE_DOCKER: "1"
 
       # Journal: enable this and mount only the host journal directory below.
-      # Details: README.md#optional-security-sources
+      # Details: https://nodesentinel.de/docs/docker/#zusätzliche-hostquellen
       # NODESENTINEL_ENABLE_JOURNAL: "1"
       # NODESENTINEL_JOURNAL_DIR: /host/journal
 
       # Fail2Ban: Set to "1" and verify the host socket path.
-      # Details: README.md#optional-security-sources
+      # Details: https://nodesentinel.de/docs/docker/#zusätzliche-hostquellen
       # NODESENTINEL_ENABLE_FAIL2BAN: "1"
       # NODESENTINEL_FAIL2BAN_SOCKET: /host/fail2ban/fail2ban.sock
 
       # UFW: Also enable host networking, NET_ADMIN, /run, and /etc/ufw.
-      # Details: README.md#optional-security-sources
+      # Details: https://nodesentinel.de/docs/docker/#zusätzliche-hostquellen
       # NODESENTINEL_ENABLE_UFW: "1"
 
       # S.M.A.R.T.: Also enable SYS_RAWIO and devices.
-      # Details: README.md#hardware-metrics
+      # Details: https://nodesentinel.de/docs/docker/#zusätzliche-hostquellen
       # NODESENTINEL_ENABLE_SMART: "1"
 
     cap_drop:
@@ -88,7 +88,7 @@ services:
       #   bind:
       #     create_host_path: false
       # UFW: Enable only when UFW status is required.
-      # Details: README.md#optional-security-sources
+      # Details: https://nodesentinel.de/docs/docker/#zusätzliche-hostquellen
       # - type: bind
       #   source: /etc/ufw
       #   target: /etc/ufw
@@ -103,6 +103,6 @@ services:
       #   bind:
       #     create_host_path: false
     # S.M.A.R.T.: Enable with NODESENTINEL_ENABLE_SMART and SYS_RAWIO.
-    # Details: README.md#hardware-metrics
+    # Details: https://nodesentinel.de/docs/docker/#zusätzliche-hostquellen
     # devices:
     #   - "${NODESENTINEL_SMART_DEVICE:-/dev/sda}:${NODESENTINEL_SMART_DEVICE:-/dev/sda}"
