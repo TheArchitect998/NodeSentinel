@@ -61,10 +61,11 @@ repository and published at **https://nodesentinel.de/docs/**.
 
 ## Version and Release Notes
 
-**Current stable version: `v2.4.2`**
+**Current stable version: `v2.4.3`**
 
-Version `v2.4.2` fixes Docker notifications. Changes, known limitations, and
-previous versions are available in the
+Version `v2.4.3` adds the new NodeSentinel logo and shortcut icons for browsers,
+desktop, and iPhone home screens. Changes, known limitations, and previous
+versions are available in the
 [GitHub releases](https://github.com/TheArchitect998/NodeSentinel/releases)
 and [version tags](https://github.com/TheArchitect998/NodeSentinel/tags).
 
