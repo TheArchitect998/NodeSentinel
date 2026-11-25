@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/hex"
 	"encoding/json"
+	"image/png"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -63,6 +64,92 @@ func loginForTest(t *testing.T, d *dashboard, password string) *http.Cookie {
 	}
 	t.Fatal("login did not set a session cookie")
 	return nil
+}
+
+func TestDashboardBrandAssets(t *testing.T) {
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chdir(filepath.Join(dir, "..", "..")); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() {
+		if err := os.Chdir(dir); err != nil {
+			t.Errorf("restore working directory: %v", err)
+		}
+	})
+
+	handler := (&dashboard{}).handler()
+	page := request(t, handler, http.MethodGet, "/", nil, nil)
+	if page.Code != http.StatusOK {
+		t.Fatalf("dashboard page status = %d", page.Code)
+	}
+	for _, path := range []string{
+		"/icons/nodesentinel-mark.svg", "/icons/favicon.ico", "/icons/favicon.svg",
+		"/icons/apple-touch-icon.png", "/icons/site.webmanifest",
+	} {
+		if !strings.Contains(page.Body.String(), `"`+path+`"`) {
+			t.Errorf("dashboard page does not reference %s", path)
+		}
+	}
+
+	for _, asset := range []struct {
+		name   string
+		width  int
+		height int
+	}{
+		{"nodesentinel-mark.svg", 0, 0},
+		{"favicon.svg", 0, 0},
+		{"favicon.ico", 0, 0},
+		{"apple-touch-icon.png", 180, 180},
+		{"icon-192.png", 192, 192},
+		{"icon-512.png", 512, 512},
+		{"icon-maskable-512.png", 512, 512},
+	} {
+		recorder := request(t, handler, http.MethodGet, "/icons/"+asset.name, nil, nil)
+		want, err := os.ReadFile(filepath.Join("frontend", "icons", asset.name))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if recorder.Code != http.StatusOK || !bytes.Equal(recorder.Body.Bytes(), want) {
+			t.Errorf("GET %s: status = %d or content does not match", asset.name, recorder.Code)
+		}
+		if asset.width != 0 {
+			config, err := png.DecodeConfig(bytes.NewReader(recorder.Body.Bytes()))
+			if err != nil || config.Width != asset.width || config.Height != asset.height {
+				t.Errorf("%s dimensions = %dx%d, err = %v; want %dx%d", asset.name, config.Width, config.Height, err, asset.width, asset.height)
+			}
+		}
+	}
+
+	manifest := request(t, handler, http.MethodGet, "/icons/site.webmanifest", nil, nil)
+	if manifest.Code != http.StatusOK || manifest.Header().Get("Content-Type") != "application/manifest+json" {
+		t.Fatalf("manifest response = %d, Content-Type = %q", manifest.Code, manifest.Header().Get("Content-Type"))
+	}
+	var data struct {
+		StartURL string `json:"start_url"`
+		Icons    []struct {
+			Src string `json:"src"`
+		} `json:"icons"`
+	}
+	if err := json.Unmarshal(manifest.Body.Bytes(), &data); err != nil {
+		t.Fatal(err)
+	}
+	if data.StartURL != "/" || len(data.Icons) != 3 {
+		t.Fatalf("unexpected manifest: %+v", data)
+	}
+	for _, icon := range data.Icons {
+		if got := request(t, handler, http.MethodGet, icon.Src, nil, nil).Code; got != http.StatusOK {
+			t.Errorf("manifest icon %s status = %d", icon.Src, got)
+		}
+	}
+	if got := request(t, handler, http.MethodGet, "/icons/unknown.png", nil, nil).Code; got != http.StatusNotFound {
+		t.Errorf("unknown asset status = %d, want 404", got)
+	}
+	if got := request(t, handler, http.MethodGet, "/api/dashboard", nil, nil).Code; got != http.StatusUnauthorized {
+		t.Errorf("unauthenticated dashboard status = %d, want 401", got)
+	}
 }
 
 func TestAgentAuthenticationAndEventQueryValidation(t *testing.T) {

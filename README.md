@@ -43,6 +43,10 @@ Choose the installation method that fits your environment:
 
 The recommended starting point is the [quick start guide](https://nodesentinel.de/docs/schnellstart/).
 
+The dashboard serves its logo and shortcut icons from `frontend/icons/`. For a
+native installation or update, keep this directory alongside
+`frontend/index.html` and use the matching dashboard binary.
+
 ## Documentation
 
 The complete, up-to-date documentation is maintained in the

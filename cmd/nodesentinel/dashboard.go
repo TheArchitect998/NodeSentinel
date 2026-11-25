@@ -393,6 +393,17 @@ func (s *dashboardStore) writeSettings(settings map[string]any) error {
 func (d *dashboard) handler() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /", d.index)
+	for _, name := range []string{
+		"nodesentinel-mark.svg", "favicon.svg", "favicon.ico", "apple-touch-icon.png",
+		"icon-192.png", "icon-512.png", "icon-maskable-512.png", "site.webmanifest",
+	} {
+		mux.HandleFunc("GET /icons/"+name, func(w http.ResponseWriter, r *http.Request) {
+			if name == "site.webmanifest" {
+				w.Header().Set("Content-Type", "application/manifest+json")
+			}
+			http.ServeFile(w, r, filepath.Join("frontend", "icons", name))
+		})
+	}
 	mux.HandleFunc("GET /api/auth/status", d.authStatus)
 	mux.HandleFunc("POST /api/auth/login", d.login)
 	mux.HandleFunc("POST /api/auth/logout", d.logout)

@@ -17,7 +17,7 @@ RUN apt-get update \
     && chmod 700 state
 
 COPY --from=build /out/nodesentinel /usr/local/bin/nodesentinel
-COPY frontend/index.html frontend/index.html
+COPY frontend/ frontend/
 
 USER 10001:10001
 EXPOSE 8888

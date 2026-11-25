@@ -6,4 +6,4 @@
 !cmd/
 !cmd/**
 !frontend/
-!frontend/index.html
+!frontend/**
