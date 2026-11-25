@@ -3,67 +3,67 @@
 </p>
 
 <p align="center">
-  <strong>Selbst gehostetes Monitoring für Linux-Systeme und Container.</strong>
+  <strong>Self-hosted monitoring for Linux systems and containers.</strong>
 </p>
 
 <p align="center">
   <a href="https://nodesentinel.de"><strong>Website</strong></a>
   ·
-  <a href="https://nodesentinel.de/docs/"><strong>Dokumentation</strong></a>
+  <a href="https://nodesentinel.de/docs/"><strong>Documentation</strong></a>
   ·
   <a href="https://github.com/TheArchitect998/NodeSentinel/releases"><strong>Releases</strong></a>
 </p>
 
-## Kurzbeschreibung
+## Overview
 
-NodeSentinel bündelt Metriken, Docker-Status, Sicherheitsinformationen,
-Erreichbarkeitsprüfungen und Benachrichtigungen in einem zentralen Dashboard.
-Die Agenten sammeln Daten auf den überwachten Hosts; alle Messwerte und
-Einstellungen bleiben in der eigenen Infrastruktur.
+NodeSentinel brings metrics, Docker status, security information, availability
+checks, and notifications together in a single dashboard. Agents collect data
+from monitored hosts, while all measurements and settings remain within your
+own infrastructure.
 
-## Für wen eignet sich NodeSentinel?
+## Who Is NodeSentinel For?
 
-- Homelab-Betreiber und Selbsthoster
-- Kleine Server- und Raspberry-Pi-Umgebungen
-- Administratoren persönlicher oder kleiner geschäftlicher Linux-Infrastrukturen
-- Nutzer, die ein leichtgewichtiges Monitoring ohne verpflichtende Cloud oder
-  Telemetrie benötigen
+- Homelab operators and self-hosters
+- Small server and Raspberry Pi environments
+- Administrators of personal or small business Linux infrastructure
+- Users who need lightweight monitoring without a mandatory cloud service or
+  telemetry
 
-Unterstützt werden Linux auf **AMD64 und ARM64**.
+Linux on **AMD64 and ARM64** is supported.
 
 ## Installation
 
-Wähle die passende Installationsvariante:
+Choose the installation method that fits your environment:
 
-| Variante | Geeignet für | Anleitung |
+| Method | Best for | Guide |
 | --- | --- | --- |
-| **Docker Compose** | Der schnellste Einstieg mit fertigen Multi-Architektur-Images | [Docker-Installation](https://nodesentinel.de/docs/docker/) |
-| **Dockhand oder Portainer** | Betrieb und Updates über eine bestehende Container-Weboberfläche | [Stack-Installation](https://nodesentinel.de/docs/docker/#dockhand-oder-portainer) |
-| **Nativ mit systemd** | Direkter Betrieb als Go-Binary auf Linux-Hosts | [Native Installation](https://nodesentinel.de/docs/nativ/) |
+| **Docker Compose** | The fastest setup with prebuilt multi-architecture images | [Docker installation](https://nodesentinel.de/docs/docker/) |
+| **Dockhand or Portainer** | Running and updating through an existing container web interface | [Stack installation](https://nodesentinel.de/docs/docker/#dockhand-oder-portainer) |
+| **Native with systemd** | Running as a Go binary directly on Linux hosts | [Native installation](https://nodesentinel.de/docs/nativ/) |
 
-Der empfohlene Einstieg ist der [Schnellstart](https://nodesentinel.de/docs/schnellstart/).
+The recommended starting point is the [quick start guide](https://nodesentinel.de/docs/schnellstart/).
 
-## Dokumentation
+## Documentation
 
-Die vollständige und aktuelle Dokumentation liegt im Repository
-[`nodesentinel-site`](https://github.com/TheArchitect998/nodesentinel-site) und
-ist unter **https://nodesentinel.de/docs/** erreichbar.
+The complete, up-to-date documentation is maintained in the
+[`nodesentinel-site`](https://github.com/TheArchitect998/nodesentinel-site)
+repository and published at **https://nodesentinel.de/docs/**.
 
-- [Schnellstart](https://nodesentinel.de/docs/schnellstart/)
+- [Quick start](https://nodesentinel.de/docs/schnellstart/)
 - [Docker Compose](https://nodesentinel.de/docs/docker/)
-- [Native Installation](https://nodesentinel.de/docs/nativ/)
-- [Konfiguration](https://nodesentinel.de/docs/konfiguration/)
-- [Reverse Proxy und HTTPS](https://nodesentinel.de/docs/reverse-proxy/)
+- [Native installation](https://nodesentinel.de/docs/nativ/)
+- [Configuration](https://nodesentinel.de/docs/konfiguration/)
+- [Reverse proxy and HTTPS](https://nodesentinel.de/docs/reverse-proxy/)
 
-## Version und Versionshinweise
+## Version and Release Notes
 
-**Aktuelle stabile Version: `v2.4.2`**
+**Current stable version: `v2.4.2`**
 
-In `v2.4.2` wurden Docker-Benachrichtigungen repariert. Änderungen, bekannte
-Einschränkungen und frühere Versionen findest du in den
-[GitHub-Releases](https://github.com/TheArchitect998/NodeSentinel/releases)
-sowie den [Versions-Tags](https://github.com/TheArchitect998/NodeSentinel/tags).
+Version `v2.4.2` fixes Docker notifications. Changes, known limitations, and
+previous versions are available in the
+[GitHub releases](https://github.com/TheArchitect998/NodeSentinel/releases)
+and [version tags](https://github.com/TheArchitect998/NodeSentinel/tags).
 
-## Lizenz
+## License
 
-NodeSentinel steht unter der [Apache License 2.0](LICENSE).
+NodeSentinel is licensed under the [Apache License 2.0](LICENSE).
