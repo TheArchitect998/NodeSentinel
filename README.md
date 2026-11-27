@@ -42,9 +42,9 @@ Choose the installation method that fits your environment:
 | --- | --- | --- |
 | **Docker Compose** | The fastest setup with prebuilt multi-architecture images | [Docker installation](https://nodesentinel.de/en/docs/docker/) |
 | **Dockhand or Portainer** | Running and updating through an existing container web interface | [Stack installation](https://nodesentinel.de/en/docs/docker/#dockhand-oder-portainer) |
-| **Native with systemd** | Running as a Go binary directly on Linux hosts | [Native installation](https://nodesentinel.de/en/docs/nativ/) |
+| **Native with systemd** | Running as a Go binary directly on Linux hosts | [Native installation](https://nodesentinel.de/en/docs/native/) |
 
-The recommended starting point is the [quick start guide](https://nodesentinel.de/en/docs/schnellstart/).
+The recommended starting point is the [quick start guide](https://nodesentinel.de/en/docs/quick-start/).
 
 The dashboard serves its logo and shortcut icons from `frontend/icons/`. For a
 native installation or update, keep this directory alongside
@@ -56,10 +56,10 @@ The complete, up-to-date documentation is maintained in the
 [`nodesentinel-site`](https://github.com/TheArchitect998/nodesentinel-site)
 repository and published at **https://nodesentinel.de/en/docs/**.
 
-- [Quick start](https://nodesentinel.de/en/docs/schnellstart/)
+- [Quick start](https://nodesentinel.de/en/docs/quick-start/)
 - [Docker Compose](https://nodesentinel.de/en/docs/docker/)
-- [Native installation](https://nodesentinel.de/en/docs/nativ/)
-- [Configuration](https://nodesentinel.de/en/docs/konfiguration/)
+- [Native installation](https://nodesentinel.de/en/docs/native/)
+- [Configuration](https://nodesentinel.de/en/docs/configuration/)
 - [Reverse proxy and HTTPS](https://nodesentinel.de/en/docs/reverse-proxy/)
 
 ## How NodeSentinel Is Made
@@ -79,7 +79,7 @@ To keep the project easy to review:
 - Releases are tested end to end on fresh machines across the Docker,
   native/systemd, and update paths.
 - Security-relevant design choices and configuration guidance are
-  documented in the [security documentation](https://nodesentinel.de/en/docs/sicherheit/)
+  documented in the [security documentation](https://nodesentinel.de/en/docs/security/)
   and [SECURITY.md](SECURITY.md).
 
 Bug reports and ideas are welcome as GitHub issues. Security
